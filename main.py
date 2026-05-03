@@ -4,32 +4,42 @@ from reserva import Reserva
 
 def main():
     try:
-        # Crear cliente
+        # Cliente válido
         cliente1 = Cliente("Erney", "erney@email.com")
 
-        # Crear servicios
+        # Cliente inválido (error)
+        try:
+            cliente2 = Cliente("", "correo")
+        except Exception as e:
+            print("Error creando cliente:", e)
+
+        # Servicios
         servicio1 = ReservaSala(2)
         servicio2 = AlquilerEquipo(3)
         servicio3 = Asesoria(1)
 
-        # Crear reservas
+        # Reserva válida
         reserva1 = Reserva(cliente1, servicio1, 2)
         reserva1.confirmar()
-
-        reserva2 = Reserva(cliente1, servicio2, 3)
-        reserva2.cancelar()
-
-        reserva3 = Reserva(cliente1, servicio3, 1)
-        reserva3.confirmar()
-
-        # Mostrar resultados
         print(reserva1.mostrar())
-        print(reserva2.mostrar())
+
+        # Reserva inválida
+        try:
+            reserva2 = Reserva(cliente1, servicio2, -1)
+        except Exception as e:
+            print("Error en reserva:", e)
+
+        # Más operaciones
+        reserva3 = Reserva(cliente1, servicio2, 3)
+        reserva3.cancelar()
         print(reserva3.mostrar())
 
-    except Exception as e:
-        print("Error en el sistema:", e)
+        reserva4 = Reserva(cliente1, servicio3, 1)
+        reserva4.confirmar()
+        print(reserva4.mostrar())
 
+    except Exception as e:
+        print("Error general:", e)
 
 if __name__ == "__main__":
     main()
