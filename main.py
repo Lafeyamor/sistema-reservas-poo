@@ -1,4 +1,19 @@
 from cliente import Cliente
+
+try:
+    cliente1 = Cliente("Miguel", 20, "123", "miguel@gmail.com")
+    print(cliente1.mostrar_info())
+
+except Exception as e:
+    print(e)
+
+try:
+    cliente2 = Cliente("", -5, "", "correo_malo")
+
+except Exception as e:
+    print("Error controlado:", e)
+    
+    
 from servicio import ReservaSala, AlquilerEquipo, Asesoria
 from reserva import Reserva
 from excepciones import ReservaError
